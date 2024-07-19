@@ -1,0 +1,20 @@
+/* CoinChart.css */
+.coin-chart {
+  width: 100%;
+  max-width: 600px; /* Adjust as needed */
+  margin: auto; /* Center the chart */
+  padding: 20px; /* Add some padding */
+  background-color: #f9f9f9; /* Light background for better visibility */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.chartjs-render-monitor {
+  border-radius: 8px; /* Rounded corners for the chart itself */
+}
+.coin-chart {
+  width: 100%;
+  height: 400px; /* Fixed height or adjust as needed */
+  max-width: 800px; /* Adjust for larger screens */
+  margin: auto;
+}

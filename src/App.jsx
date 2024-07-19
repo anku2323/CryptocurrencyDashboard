@@ -2,6 +2,7 @@ import React from 'react';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { CoinProvider } from './Header/CoinContext';
 import Navbar from './Header/Navbar';
+import News from './News/News';
 
 
 const App = () => {
@@ -14,7 +15,7 @@ const App = () => {
     >
       <CoinProvider>
         <Navbar />
-       
+       <News />
       </CoinProvider>
     </Auth0Provider>
     

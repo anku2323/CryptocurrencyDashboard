@@ -1,57 +1,65 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import SearchBar from "../SearchCrypto/SearchBar";
-import "./Navbar.css";
+import React, { useState, useRef, useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+import SearchBar from '../SearchCrypto/SearchBar';
+import CoinTable from '../CoinTable/CoinTable';
+import CoinChart from '../CoinChart/CoinGraph';
+import './Navbar.css';
 
 const Navbar = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   const [showSidebar, setShowSidebar] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+  const [marketData, setMarketData] = useState(null);
   const sidebarRef = useRef(null);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
-      if (
-        sidebarRef.current &&
-        !sidebarRef.current.contains(event.target) &&
-        !event.target.closest(".profile-container")
-      ) {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target) && !event.target.closest('.profile-container')) {
         setShowSidebar(false);
       }
     };
 
-    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener('mousedown', handleOutsideClick);
     return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [sidebarRef]);
 
   useEffect(() => {
-    // Fetch Bitcoin data by default
-    const fetchBitcoinData = async () => {
+    const fetchDefaultData = async () => {
       try {
-        const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin');
-        const data = await response.json();
-        setSearchResults(data);
+        const tableDataResponse = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin');
+        const tableData = await tableDataResponse.json();
+        console.log('Default Table Data:', tableData);
+
+        const graphDataResponse = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7');
+        const graphData = await graphDataResponse.json();
+        console.log('Default Graph Data:', graphData);
+
+        setSearchResults(tableData);
+        setMarketData(graphData);
       } catch (error) {
         console.error('Error fetching Bitcoin data:', error);
       }
     };
 
-    fetchBitcoinData();
+    fetchDefaultData();
   }, []);
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
   };
 
-  const handleSearchResults = (results) => {
-    // If the API returns an array with data, set the first element
-    if (Array.isArray(results) && results.length > 0) {
-      setSearchResults(results);
-    } else {
-      setSearchResults([]); // Clear results if no valid data
+  const handleSearchResults = ({ tableData, graphData }) => {
+    if (tableData.length === 0) {
+      console.log('No data returned from search');
+      setSearchResults([]);
+      setMarketData(null);
+      return;
     }
+
+    setSearchResults(tableData);
+    setMarketData(graphData);
   };
 
   return (
@@ -115,6 +123,10 @@ const Navbar = () => {
         ) : (
           <p>No results found</p>
         )}
+      </div>
+      <div className="market-data-container">
+        {searchResults.length > 0 && <CoinTable coinData={searchResults} />}
+        {marketData && <CoinChart marketData={marketData} />}
       </div>
     </>
   );
