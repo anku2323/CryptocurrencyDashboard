@@ -1,20 +1,32 @@
-/* CoinChart.css */
 .coin-chart {
   width: 100%;
-  max-width: 600px; /* Adjust as needed */
-  margin: auto; /* Center the chart */
-  padding: 20px; /* Add some padding */
-  background-color: #f9f9f9; /* Light background for better visibility */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  max-width: 800px; 
+  height: 400px; 
+  margin-top: 40px;
+  padding: 20px; 
+  background-color: #f9f9f9; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .chartjs-render-monitor {
-  border-radius: 8px; /* Rounded corners for the chart itself */
+  border-radius: 8px; 
 }
-.coin-chart {
-  width: 100%;
-  height: 400px; /* Fixed height or adjust as needed */
-  max-width: 800px; /* Adjust for larger screens */
-  margin: auto;
+
+@media(max-width: 1024px){
+  .coin-chart{
+    width: 63%;
+  }
+}
+
+@media(max-width: 768px){
+  .coin-chart{
+    width: 60%;
+  }
+}
+
+@media(max-width: 425px){
+  .coin-chart{
+    width: 90%;
+  }
 }

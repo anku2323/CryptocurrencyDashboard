@@ -30,7 +30,7 @@ const CoinChart = ({ marketData }) => {
       },
       tooltip: {
         callbacks: {
-          label: (tooltipItem) => `$${tooltipItem.raw.toFixed(2)}`, // Format tooltip labels
+          label: (tooltipItem) => `$${tooltipItem.raw.toFixed(2)}`, 
         },
       },
     },
@@ -38,12 +38,12 @@ const CoinChart = ({ marketData }) => {
       x: {
         ticks: {
           autoSkip: true,
-          maxTicksLimit: 10, // Limit number of x-axis labels
+          maxTicksLimit: 10, 
         },
       },
       y: {
         ticks: {
-          callback: (value) => `$${value.toFixed(2)}`, // Format y-axis labels
+          callback: (value) => `$${value.toFixed(2)}`, 
         },
       },
     },

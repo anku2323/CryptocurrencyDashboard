@@ -8,6 +8,9 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+body{
+  background-color: #e8eefb;
+}
 
 .navbar-container {
   display: flex;
@@ -182,6 +185,24 @@
   }
 }
 
-@media(max-width: 425px){
+@media(max-width: 375px){
+  .search-and-profile{
+    gap: 5px;
+  }
+
+  .logo{
+    width: 70px;
+  }
+
+}
+
+@media(max-width: 320px){
+  .search-and-profile{
+    gap: 10px;
+  }
+
+  .logo{
+    width: 70px;
+  }
 
 }
