@@ -1,0 +1,31 @@
+.portfolio-container {
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.portfolio-header h2 {
+  margin: 0;
+}
+
+.total-value {
+  font-size: 16px;
+}
+
+.total-value span {
+  font-weight: bold;
+}
+
+.portfolio-chart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

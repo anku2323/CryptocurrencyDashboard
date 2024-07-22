@@ -1,41 +1,121 @@
-.currency-converter {
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    max-width: 400px;
+/* CurrencyConverter.css */
+
+.converter-container {
+    max-width: 600px;
     margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .converter-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .converter-form {
+  h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
     margin-bottom: 20px;
   }
   
-  .converter-form label {
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
     display: block;
-    margin-bottom: 10px;
-  }
-  
-  .converter-form input,
-  .converter-form select {
-    margin-left: 10px;
-  }
-  
-  .conversion-result {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-  }
-  
-  .currency-checkboxes {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .currency-checkboxes label {
     margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .input-field,
+  .select-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .input-field:focus,
+  .select-field:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .convert-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .convert-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .result {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .result h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .result p {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .converter-container {
+      padding: 15px;
+    }
+  
+    .input-field,
+    .select-field {
+      font-size: 14px;
+    }
+  
+    .convert-button {
+      font-size: 14px;
+    }
+  
+    .result h3 {
+      font-size: 18px;
+    }
+  
+    .result p {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .converter-container {
+      padding: 10px;
+    }
+  
+    .input-field,
+    .select-field {
+      font-size: 12px;
+    }
+  
+    .convert-button {
+      font-size: 12px;
+    }
+  
+    .result h3 {
+      font-size: 16px;
+    }
+  
+    .result p {
+      font-size: 14px;
+    }
   }
   

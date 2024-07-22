@@ -1,23 +1,30 @@
 import React from 'react';
-import { Auth0Provider } from '@auth0/auth0-react';
-import { CoinProvider } from './Header/CoinContext';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import CoinDetails from './SearchCrypto/CoinDetails';
 import Navbar from './Header/Navbar';
-// import News from './News/News';
+import HomePage from './Home'; // Ensure you have a HomePage component
 
+const AppContent = () => {
+  const location = useLocation();
+  const isCoinDetailsPage = location.pathname.startsWith('/coin/');
+
+  return (
+    <>
+      {!isCoinDetailsPage && <Navbar />}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/coin/:coinSymbol" element={<CoinDetails />} />
+        {/* Add other routes here as needed */}
+      </Routes>
+    </>
+  );
+};
 
 const App = () => {
   return (
-    
-    <Auth0Provider
-      domain="dev-hf4rmqjaiaaozo7s.us.auth0.com"
-      clientId="LxnwN0hceNGhpWsJo4rp8aYjkbjXnvYz"
-      redirectUri={window.location.origin}
-    >
-      <CoinProvider>
-        <Navbar />
-      </CoinProvider>
-    </Auth0Provider>
-    
+    <Router>
+      <AppContent />
+    </Router>
   );
 };
 

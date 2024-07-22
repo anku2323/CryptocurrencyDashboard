@@ -288,3 +288,7 @@ body {
   padding: 20px;
   border: 1px solid black;
 }
+/* Navbar.css */
+.hidden {
+  display: none;
+}

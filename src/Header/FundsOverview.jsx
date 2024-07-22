@@ -1,51 +1,46 @@
-import React, { useEffect, useRef } from 'react';
-import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
-import 'chart.js/auto'; // Ensures that all elements are registered
+import React from 'react';
+import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
+import './Portfolio.css'; // Import your CSS file for styling
 
-const FundsOverview = () => {
-  const chartRef = useRef(null);
-  const chartInstanceRef = useRef(null);
+// Sample data for the pie chart
+const data = [
+  { name: 'Bitcoin', value: 375 },
+  { name: 'Dogecoin', value: 375 },
+  { name: 'Ethereum', value: 250 },
+];
 
-  useEffect(() => {
-    const ctx = chartRef.current.getContext('2d');
+// Colors for each pie slice
+const COLORS = ['#A0A0A0', '#0000FF', '#008000'];
 
-    if (chartInstanceRef.current) {
-      chartInstanceRef.current.destroy();
-    }
-
-    chartInstanceRef.current = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Bitcoin', 'Ethereum','dogecoin', 'cardano', 'ripple',],
-        datasets: [
-          {
-            data: [38, 22, 20,18,12],
-            backgroundColor: ['#F2A900',' #716b94', ' #cb9800','#0033AD','#00A5DF'],
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'top',
-          },
-          tooltip: {
-            enabled: true,
-          },
-        },
-      },
-    });
-
-    return () => {
-      if (chartInstanceRef.current) {
-        chartInstanceRef.current.destroy();
-      }
-    };
-  }, []);
-
-  return <canvas ref={chartRef} />;
+const Portfolio = () => {
+  return (
+    <div className="portfolio-container">
+      <div className="portfolio-header">
+        <h2>Portfolio Overview</h2>
+        <p className="total-value">Total Value: <span>$1000</span></p>
+      </div>
+      <div className="portfolio-chart-wrapper">
+        <PieChart width={400} height={400}>
+          <Pie
+            data={data}
+            cx={200}
+            cy={200}
+            labelLine={false}
+            outerRadius={150}
+            fill="#8884d8"
+            dataKey="value"
+            label={({ name, value }) => `$${value}`}
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip formatter={(value) => `$${value}`} />
+          <Legend wrapperStyle={{ bottom: -10, left: 0, right: 0, textAlign: 'center' }} />
+        </PieChart>
+      </div>
+    </div>
+  );
 };
 
-export default FundsOverview;
+export default Portfolio;

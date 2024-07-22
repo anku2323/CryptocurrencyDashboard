@@ -1,92 +1,97 @@
 import React, { useState, useEffect } from 'react';
-import './CurrencyConverter.css';
+import axios from 'axios';
+import './CurrencyConverter.css'; // Import your CSS file
 
 const CurrencyConverter = () => {
-  const [cryptoRates, setCryptoRates] = useState({});
-  const [fromCurrency, setFromCurrency] = useState('bitcoin');
-  const [toCurrency, setToCurrency] = useState('usd');
-  const [amount, setAmount] = useState(1);
+  const [value, setValue] = useState('');
+  const [cryptoCurrency, setCryptoCurrency] = useState('bitcoin');
+  const [targetCurrency, setTargetCurrency] = useState('usd');
   const [convertedAmount, setConvertedAmount] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [cryptoList, setCryptoList] = useState([]);
 
   useEffect(() => {
-    console.log('CurrencyConverter component mounted');
-
-    const fetchCryptoPrices = async () => {
+    // Fetch cryptocurrency list on component mount
+    const fetchCryptoList = async () => {
       try {
-        const response = await fetch('https://pro-api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd,inr', {
-          method: 'GET',
-          headers: {
-            accept: 'application/json',
-            'x-cg-pro-api-key': 'CG-QAemoKBvKKWT6byuC6WWtfdU'
-          }
-        });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log('Crypto Prices Data:', data); // Debugging
-        setCryptoRates(data);
+        const response = await axios.get('https://api.coingecko.com/api/v3/coins/list');
+        setCryptoList(response.data);
       } catch (error) {
-        console.error('Error fetching cryptocurrency prices:', error);
+        setError('Failed to fetch cryptocurrency list.');
       }
     };
-
-    fetchCryptoPrices();
+    fetchCryptoList();
   }, []);
 
-  useEffect(() => {
-    console.log('Converting amount:', amount, 'from', fromCurrency, 'to', toCurrency);
-
-    if (cryptoRates[fromCurrency] && cryptoRates[fromCurrency][toCurrency]) {
-      const cryptoPrice = cryptoRates[fromCurrency][toCurrency];
-      const converted = amount * cryptoPrice;
-      setConvertedAmount(converted);
+  const handleConvert = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${cryptoCurrency}`);
+      const price = response.data.market_data.current_price[targetCurrency];
+      const result = value * price;
+      setConvertedAmount(result.toFixed(2));
+    } catch (error) {
+      setError('Failed to fetch data. Please try again.');
+    } finally {
+      setLoading(false);
     }
-  }, [cryptoRates, fromCurrency, toCurrency, amount]);
-
-  const handleFromCurrencyChange = (event) => {
-    setFromCurrency(event.target.value);
-  };
-
-  const handleToCurrencyChange = (event) => {
-    setToCurrency(event.target.value);
-  };
-
-  const handleAmountChange = (event) => {
-    setAmount(event.target.value);
   };
 
   return (
-    <div className="currency-converter">
+    <div className="converter-container">
       <h2>Currency Converter</h2>
-      <div className="converter-box">
-        <input
-          type="number"
-          value={amount}
-          onChange={handleAmountChange}
-          className="amount-input"
-        />
-        <select
-          value={fromCurrency}
-          onChange={handleFromCurrencyChange}
-          className="currency-select"
-        >
-          <option value="bitcoin">Bitcoin</option>
-          <option value="ethereum">Ethereum</option>
-        </select>
-        <span className="arrow">→</span>
-        <select
-          value={toCurrency}
-          onChange={handleToCurrencyChange}
-          className="currency-select"
-        >
-          <option value="usd">USD</option>
-          <option value="inr">INR</option>
-        </select>
+      <div className="form-group">
+        <label>
+          Enter Value:
+          <input
+            type="number"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            className="input-field"
+          />
+        </label>
       </div>
-      {convertedAmount !== null && (
-        <div className="converted-amount">
-          Converted Amount: {convertedAmount.toFixed(2)} {toCurrency.toUpperCase()}
+      <div className="form-group">
+        <label>
+          Select Cryptocurrency:
+          <select
+            value={cryptoCurrency}
+            onChange={(e) => setCryptoCurrency(e.target.value)}
+            className="select-field"
+          >
+            {cryptoList.map((crypto) => (
+              <option key={crypto.id} value={crypto.id}>
+                {crypto.name} ({crypto.symbol.toUpperCase()})
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div className="form-group">
+        <label>
+          Select Target Currency:
+          <select
+            value={targetCurrency}
+            onChange={(e) => setTargetCurrency(e.target.value)}
+            className="select-field"
+          >
+            <option value="usd">USD</option>
+            <option value="eur">EUR</option>
+            <option value="inr">INR</option>
+            {/* Add more options as needed */}
+          </select>
+        </label>
+      </div>
+      <button onClick={handleConvert} className="convert-button" disabled={loading}>
+        {loading ? <span className="loading-spinner"></span> : 'Convert'}
+      </button>
+      {error && <div className="error-message">{error}</div>}
+      {convertedAmount !== null && !loading && (
+        <div className="result">
+          <h3>Converted Amount:</h3>
+          <p>{convertedAmount} {targetCurrency.toUpperCase()}</p>
         </div>
       )}
     </div>
