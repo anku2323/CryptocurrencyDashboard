@@ -129,11 +129,11 @@ const Navbar = () => {
                 </li>
               </ul>
               <div className="theme-switch">
-                <label className="switch">
-                  <input type="checkbox" checked={isDarkMode} onChange={toggleTheme} />
-                  <span className="slider"></span>
-                </label>
-                <span className="theme-label">{isDarkMode ? 'Dark Mode' : 'Light Mode'}</span>
+                <div className="theme-btn" onClick={toggleTheme}>
+                  <span className="material-icons" style={{ color: isDarkMode ? 'white' : 'black' }}>
+                    {isDarkMode ? 'dark_mode' : 'light_mode'}
+                  </span>
+                </div>
               </div>
             </div>
           </div>

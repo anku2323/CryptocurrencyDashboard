@@ -13,22 +13,38 @@ const CoinDetails = () => {
   useEffect(() => {
     const fetchCoinData = async () => {
       try {
-        const [coinResponse, historyResponse] = await Promise.all([
-          axios.get(`https://api.coingecko.com/api/v3/coins/${coinSymbol}`, {
-            params: { localization: 'false' },
-          }),
-          axios.get(`https://api.coingecko.com/api/v3/coins/${coinSymbol}/market_chart?vs_currency=usd&days=7`)
-        ]);
-        setCoinData(coinResponse.data);
-        setHistoricalData(historyResponse.data.prices.map(price => ({
-          date: new Date(price[0]).toLocaleDateString(),
-          price: price[1]
-        })));
+        const localStorageCoinData = localStorage.getItem(`coinData-${coinSymbol}`);
+        const localStorageHistoricalData = localStorage.getItem(`historicalData-${coinSymbol}`);
+
+        if (localStorageCoinData && localStorageHistoricalData) {
+          setCoinData(JSON.parse(localStorageCoinData));
+          setHistoricalData(JSON.parse(localStorageHistoricalData));
+        } else {
+          const [coinResponse, historyResponse] = await Promise.all([
+            axios.get(`https://api.coingecko.com/api/v3/coins/${coinSymbol}`, {
+              params: { localization: 'false' },
+            }),
+            axios.get(`https://api.coingecko.com/api/v3/coins/${coinSymbol}/market_chart?vs_currency=usd&days=7`)
+          ]);
+
+          const coinData = coinResponse.data;
+          const historicalData = historyResponse.data.prices.map(price => ({
+            date: new Date(price[0]).toLocaleDateString(),
+            price: price[1]
+          }));
+
+          setCoinData(coinData);
+          setHistoricalData(historicalData);
+
+          localStorage.setItem(`coinData-${coinSymbol}`, JSON.stringify(coinData));
+          localStorage.setItem(`historicalData-${coinSymbol}`, JSON.stringify(historicalData));
+        }
       } catch (error) {
         setError('Error fetching coin data');
         console.error('Error fetching coin data:', error);
       }
     };
+
     fetchCoinData();
   }, [coinSymbol]);
 

@@ -6,12 +6,12 @@
   padding: 15px 5%;
   color: #000;
   border-bottom: 1px solid #e0e0e0;
-  background-color: #fff;
+  background-color: #e8eefb; /* Updated color */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 body {
-  background-color: #e8eefb;
+  background-color: #e8eefb; /* Updated color */
 }
 
 .navbar-container {
@@ -94,7 +94,7 @@ body {
   right: -280px;
   height: 100%;
   width: 280px;
-  background-color: #fff;
+  background-color: #e8eefb; /* Updated color */
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   transition: right 0.3s ease;
@@ -166,40 +166,49 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Add this to your existing Navbar.css */
+/* Additional styles */
 .crypto-price-box {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  background-color: #2c2f36;
+  /* color: #000; */
+  /* background-color: #2c2f36; */
   padding: 10px;
   border-radius: 8px;
 }
 
 .crypto-logo {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px; /* Space between logo and name */
 }
 
 .crypto-price-info {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: center; /* Center the name */
 }
 
 .crypto-name {
   font-size: 16px;
   font-weight: bold;
-  color: white;
+  /* color: white; */
+  margin-bottom: 5px; /* Space between name and price */
 }
 
 .crypto-price {
   font-size: 18px;
   font-weight: bold;
-  color: white;
+  /* color: white; */
+  margin-bottom: 5px; /* Space between price and change */
+  align-self: flex-end; /* Align the price to the right */
 }
 
 .crypto-change {
   font-size: 14px;
+  color: white;
+  align-self: flex-start; /* Align the change to the left */
 }
 
 .crypto-change.positive {
@@ -288,7 +297,97 @@ body {
   padding: 20px;
   border: 1px solid black;
 }
-/* Navbar.css */
+
 .hidden {
   display: none;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode .navbar {
+  background: #333;
+  color: #ffffff;
+  border-bottom: 1px solid #444;
+}
+
+.dark-mode body {
+  background-color: #121212;
+}
+
+.dark-mode .search-bar {
+  background: #444;
+}
+
+.dark-mode .profile-container {
+  background: #444;
+}
+
+.dark-mode .profile-container .profile-name {
+  color: #ffffff;
+}
+
+.dark-mode .profile-details {
+  background: #444;
+  color: #fff;
+}
+
+.dark-mode .profile-details button {
+  background: #555;
+  color: #fff;
+}
+
+.dark-mode .sidebar {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .sidebar-menu li:hover {
+  color: #1e90ff;
+}
+
+/* Kromisma styles */
+.kromisma {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: #2c2f36; */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.kromisma .crypto-logo {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px; /* Space between logo and name */
+}
+
+.kromisma .crypto-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px; /* Space between name and price */
+}
+
+.kromisma .crypto-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px; /* Space between price and change */
+  align-self: flex-end; /* Align the price to the right */
+}
+
+.kromisma .crypto-change {
+  font-size: 14px;
+  color: white;
+  align-self: flex-start; /* Align the change to the left */
+}
+
+.kromisma .crypto-change.positive {
+  color: #4caf50;
+}
+
+.kromisma .crypto-change.negative {
+  color: #f44336;
 }
