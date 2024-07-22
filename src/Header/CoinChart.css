@@ -1,0 +1,45 @@
+.coin-chart {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chart-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .currency-selector, .time-selector {
+    display: flex;
+    align-items: center;
+  }
+  
+  .currency-selector label {
+    margin-right: 10px;
+  }
+  
+  .time-selector button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .time-selector button.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+  
+  .time-selector button:hover {
+    background-color: #e9ecef;
+  }
+  

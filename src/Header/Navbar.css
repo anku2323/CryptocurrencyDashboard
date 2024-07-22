@@ -1,3 +1,4 @@
+/* Navbar styles */
 .navbar {
   display: flex;
   align-items: center;
@@ -6,9 +7,10 @@
   color: #000;
   border-bottom: 1px solid #e0e0e0;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-body{
+
+body {
   background-color: #e8eefb;
 }
 
@@ -111,6 +113,7 @@ body{
   align-items: center;
   gap: 15px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .sidebar-menu {
@@ -131,6 +134,82 @@ body{
   color: #007bff;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
+
+.grid-item {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Search Result styles */
+.searchResult-container {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.search-item {
+  height: 300px;
+  width: 50%;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add this to your existing Navbar.css */
+.crypto-price-box {
+  display: flex;
+  align-items: center;
+  background-color: #2c2f36;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.crypto-logo {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.crypto-price-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.crypto-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.crypto-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+.crypto-change {
+  font-size: 14px;
+}
+
+.crypto-change.positive {
+  color: #4caf50;
+}
+
+.crypto-change.negative {
+  color: #f44336;
+}
+
 @media (max-width: 1024px) {
   .navbar-menu {
     gap: 20px;
@@ -139,7 +218,6 @@ body{
 }
 
 @media (max-width: 768px) {
-
   .navbar-menu {
     order: 3;
     width: 100%;
@@ -147,7 +225,7 @@ body{
     margin-top: 15px;
   }
 
-  .navbar-menu{
+  .navbar-menu {
     display: none;
   }
 
@@ -156,13 +234,12 @@ body{
   }
 }
 
-
 @media (max-width: 576px) {
   .navbar {
     padding: 10px 4%;
   }
 
-  .navbar-container{
+  .navbar-container {
     flex-wrap: nowrap;
   }
 
@@ -170,10 +247,9 @@ body{
     width: 100px;
   }
 
-  .profile-name{
+  .profile-name {
     display: none;
   }
-
 
   .navbar-menu {
     display: none;
@@ -185,24 +261,30 @@ body{
   }
 }
 
-@media(max-width: 375px){
-  .search-and-profile{
+@media (max-width: 375px) {
+  .search-and-profile {
     gap: 5px;
   }
 
-  .logo{
+  .logo {
     width: 70px;
   }
-
 }
 
-@media(max-width: 320px){
-  .search-and-profile{
+@media (max-width: 320px) {
+  .search-and-profile {
     gap: 10px;
   }
 
-  .logo{
+  .logo {
     width: 70px;
   }
+}
 
+/* Add this to display search results in a horizontal line */
+.searchResult {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid black;
 }

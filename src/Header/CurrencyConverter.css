@@ -1,0 +1,41 @@
+.currency-converter {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .converter-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .converter-form {
+    margin-bottom: 20px;
+  }
+  
+  .converter-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .converter-form input,
+  .converter-form select {
+    margin-left: 10px;
+  }
+  
+  .conversion-result {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .currency-checkboxes {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .currency-checkboxes label {
+    margin-bottom: 5px;
+  }
+  

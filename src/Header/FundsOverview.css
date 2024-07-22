@@ -1,0 +1,55 @@
+.funds-overview {
+    background-color: #1f1f2e;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  .funds-overview h2 {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  
+  .currency-dropdown {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .currency-dropdown span {
+    margin-right: 5px;
+  }
+  
+  .currency-dropdown i {
+    font-size: 0.8em;
+  }
+  
+  .funds-list {
+    margin-top: 20px;
+  }
+  
+  .fund-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .fund-name,
+  .fund-amount {
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+  }
+  
+  .change {
+    margin-left: 10px;
+  }
+  
+  .positive {
+    color: #4caf50;
+  }
+  
+  .negative {
+    color: #f44336;
+  }
+  

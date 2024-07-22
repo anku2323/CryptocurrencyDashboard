@@ -5,30 +5,29 @@ const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = async () => {
-    if (!searchTerm) return;
+    console.log('Searching for:', searchTerm);
 
     try {
-      const formattedSearchTerm = searchTerm.toLowerCase();
-      const tableDataResponse = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${formattedSearchTerm}&order=market_cap_desc&per_page=1&page=1&sparkline=false`);
-      if (!tableDataResponse.ok) throw new Error(`Error: ${tableDataResponse.statusText}`);
-      const tableData = await tableDataResponse.json();
-      console.log('Table Data:', tableData);
-
-      if (tableData.length === 0) {
-        console.error('No data found for the provided coin ID.');
-        onSearch({ tableData: [], graphData: {} });
-        return;
+      const response = await fetch(`https://api.coingecko.com/api/v3/coins/${searchTerm}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
+      const data = await response.json();
 
-      const graphDataResponse = await fetch(`https://api.coingecko.com/api/v3/coins/${formattedSearchTerm}/market_chart?vs_currency=usd&days=7`);
-      if (!graphDataResponse.ok) throw new Error(`Error: ${graphDataResponse.statusText}`);
-      const graphData = await graphDataResponse.json();
-      console.log('Graph Data:', graphData);
-
-      onSearch({ tableData, graphData });
+      if (data.id) {
+        const graphResponse = await fetch(`https://api.coingecko.com/api/v3/coins/${data.id}/market_chart?vs_currency=usd&days=7`);
+        if (!graphResponse.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const graphData = await graphResponse.json();
+        console.log('Search Results:', { tableData: [data], graphData });
+        onSearch({ tableData: [data], graphData });
+      } else {
+        onSearch({ tableData: [], graphData: null });
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
-      onSearch({ tableData: [], graphData: {} });
+      onSearch({ tableData: [], graphData: null });
     }
   };
 
