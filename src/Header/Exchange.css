@@ -1,0 +1,56 @@
+.exchange-rates-container {
+    width: 700px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    max-width: 500px;
+    margin: 70px auto; 
+  }
+  
+  .exchange-rates-form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+  }
+  
+  .form-group select,
+  .form-group input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #eaf2f6;
+    color: #000;
+
+
+  }
+  
+  .exchange-rates-result {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  @media (max-width: 1024px) {
+    .exchange-rates-container{
+        width: 230px;
+        margin-left: -5px;
+        /* padding: 0; */
+    }
+    .form-group select,
+  .form-group input {
+    width: 20px;
+    /* display: flex; */
+    /* flex-direction: column; */
+  }
+  h2{
+    font-size: 16px;
+  }
+  }

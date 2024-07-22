@@ -20,10 +20,10 @@ const CoinChart = ({ coinId = 'bitcoin', targetCoinId = 'dogecoin' }) => {
   useEffect(() => {
     const fetchMarketData = async () => {
       try {
-        const endDate = Math.floor(Date.now() / 1000); // Current time in seconds
-        const startDate = endDate - timeRanges[timePeriod] * 24 * 60 * 60; // Time range in seconds
+        const endDate = Math.floor(Date.now() / 1000); 
+        const startDate = endDate - timeRanges[timePeriod] * 24 * 60 * 60; 
 
-        // Fetch market data for the selected coin
+       
         const response = await axios.get(
           `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart/range`,
           {
@@ -73,7 +73,7 @@ const CoinChart = ({ coinId = 'bitcoin', targetCoinId = 'dogecoin' }) => {
   }
 
   const data = {
-    labels: marketData.prices.map((price) => new Date(price[0]).toLocaleTimeString()), // Show time
+    labels: marketData.prices.map((price) => new Date(price[0]).toLocaleTimeString()),
     datasets: [
       {
         label: `Price in ${currency.toUpperCase()}`,
@@ -135,7 +135,7 @@ const CoinChart = ({ coinId = 'bitcoin', targetCoinId = 'dogecoin' }) => {
       </div>
       <Line data={data} options={options} />
       <div className="conversion-info">
-        {/* <p>1 {coinId} is equivalent to {conversionRate.toFixed(6)} {targetCoinId} in {currency.toUpperCase()}.</p> */}
+       
       </div>
     </div>
   );

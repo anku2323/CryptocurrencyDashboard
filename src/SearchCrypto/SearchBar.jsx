@@ -56,7 +56,7 @@ const SearchBar = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onFocus={() => setShowSuggestions(true)}
-        onBlur={() => setTimeout(() => setShowSuggestions(false), 100)} // Delay hiding suggestions to allow click
+        onBlur={() => setTimeout(() => setShowSuggestions(false), 100)} 
       />
       <button onClick={handleSearch}>Search</button>
       {showSuggestions && suggestions.length > 0 && (

@@ -75,7 +75,6 @@
   }
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
   .suggestions-list {
     max-height: 200px;

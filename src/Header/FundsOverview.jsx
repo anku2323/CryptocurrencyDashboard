@@ -1,8 +1,8 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
-import './Portfolio.css'; // Import your CSS file for styling
+import './Portfolio.css'; 
 
-// Sample data for the pie chart
+
 const data = [
   { name: 'Bitcoin', value: 375 },
   { name: 'Dogecoin', value: 375 },

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import CoinDetails from './SearchCrypto/CoinDetails';
 import Navbar from './Header/Navbar';
-import HomePage from './Home'; // Ensure you have a HomePage component
+import HomePage from './Home'; 
 
 const AppContent = () => {
   const location = useLocation();

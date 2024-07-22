@@ -7,6 +7,7 @@ import FundsOverview from './FundsOverview';
 import './Navbar.css';
 import News from '../News/News';
 import CoinChart from './CoinChart';
+import Exchange from './Exchange';
 
 const Navbar = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
@@ -17,7 +18,7 @@ const Navbar = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sidebarRef = useRef(null);
   const navigate = useNavigate();
-  const location = useLocation(); // Hook to get current location
+  const location = useLocation(); 
 
   const coinIds = [
     'bitcoin', 'ethereum', 'dogecoin', 'cardano', 'ripple', 'polkadot', 'litecoin', 'chainlink', 'stellar', 'uniswap',
@@ -68,7 +69,7 @@ const Navbar = () => {
         setCoinId(coinIds[nextIndex]);
         return nextIndex;
       });
-    }, 5000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [coinIds]);
@@ -85,7 +86,7 @@ const Navbar = () => {
     navigate(`/coin/${coinSymbol}`);
   };
 
-  const isCoinPage = location.pathname.startsWith('/coin/'); // Check if the current page is a coin details page
+  const isCoinPage = location.pathname.startsWith('/coin/'); 
 
   return (
     <>
@@ -148,6 +149,9 @@ const Navbar = () => {
             <span className={`crypto-change ${coinData.market_data?.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}`}>
               {coinData.market_data?.price_change_percentage_24h >= 0 ? '+' : ''}{coinData.market_data?.price_change_percentage_24h?.toFixed(2) || '0.00'}%
             </span>
+          </div>
+          <div>
+           <Exchange /> 
           </div>
         </div>
         <div className="grid-item">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './CurrencyConverter.css'; // Import your CSS file
+import './CurrencyConverter.css'; 
 
 const CurrencyConverter = () => {
   const [value, setValue] = useState('');
@@ -12,7 +12,7 @@ const CurrencyConverter = () => {
   const [cryptoList, setCryptoList] = useState([]);
 
   useEffect(() => {
-    // Fetch cryptocurrency list on component mount
+
     const fetchCryptoList = async () => {
       try {
         const response = await axios.get('https://api.coingecko.com/api/v3/coins/list');
