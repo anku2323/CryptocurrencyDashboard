@@ -55,12 +55,16 @@
     height: 300px; 
   }
 }
-@media (max-width: 1024px){
-  .portfolio-container{
+
+@media (max-width: 1024px) {
+  .portfolio-container {
     width: 330px;
     margin-left: 20px;
   }
-  ul{
-    /* margin-right: 100px; */
+}
+
+@media (max-width: 425px) {
+  .recharts-legend-wrapper {
+    width: 80px;
   }
 }

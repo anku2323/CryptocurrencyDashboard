@@ -150,14 +150,14 @@ const Navbar = () => {
               {coinData.market_data?.price_change_percentage_24h >= 0 ? '+' : ''}{coinData.market_data?.price_change_percentage_24h?.toFixed(2) || '0.00'}%
             </span>
           </div>
-          <div>
+          <div className='exchange-container'>
            <Exchange /> 
           </div>
         </div>
         <div className="grid-item">
           <CurrencyConverter />
         </div>
-        <div className="grid-item">
+        <div className="grid-item3">
           <FundsOverview />
         </div>
       </div>

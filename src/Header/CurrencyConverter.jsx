@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './CurrencyConverter.css'; 
+import './CurrencyConverter.css';
 
 const CurrencyConverter = () => {
   const [value, setValue] = useState('');
@@ -12,11 +12,17 @@ const CurrencyConverter = () => {
   const [cryptoList, setCryptoList] = useState([]);
 
   useEffect(() => {
-
     const fetchCryptoList = async () => {
+      const cachedData = localStorage.getItem('cryptoList');
+      if (cachedData) {
+        setCryptoList(JSON.parse(cachedData));
+        return;
+      }
+
       try {
         const response = await axios.get('https://api.coingecko.com/api/v3/coins/list');
         setCryptoList(response.data);
+        localStorage.setItem('cryptoList', JSON.stringify(response.data));
       } catch (error) {
         setError('Failed to fetch cryptocurrency list.');
       }
@@ -80,7 +86,6 @@ const CurrencyConverter = () => {
             <option value="usd">USD</option>
             <option value="eur">EUR</option>
             <option value="inr">INR</option>
-            {/* Add more options as needed */}
           </select>
         </label>
       </div>

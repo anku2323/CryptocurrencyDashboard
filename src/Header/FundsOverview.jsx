@@ -1,7 +1,6 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
-import './Portfolio.css'; 
-
+import './Portfolio.css';
 
 const data = [
   { name: 'Bitcoin', value: 375 },
@@ -9,7 +8,6 @@ const data = [
   { name: 'Ethereum', value: 250 },
 ];
 
-// Colors for each pie slice
 const COLORS = ['#A0A0A0', '#0000FF', '#008000'];
 
 const Portfolio = () => {
@@ -36,7 +34,15 @@ const Portfolio = () => {
             ))}
           </Pie>
           <Tooltip formatter={(value) => `$${value}`} />
-          <Legend wrapperStyle={{ bottom: -10, left: 0, right: 0, textAlign: 'center' }} />
+          <Legend
+            wrapperStyle={{
+              bottom: -10,
+              left: 0,
+              right: 0,
+              textAlign: 'center',
+              width: '80px',
+            }}
+          />
         </PieChart>
       </div>
     </div>

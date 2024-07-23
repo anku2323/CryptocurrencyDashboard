@@ -1,9 +1,6 @@
 .coin-chart {
-    /* width: 100%; */
-    /* max-width: 800px; */
     height: 400px;
     margin-top: 40px;
-    /* padding: 20px; */
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -12,7 +9,6 @@
   .chart-controls {
     display: flex;
     justify-content: space-between;
-    /* margin-bottom: 20px; */
   }
   
   .currency-selector, .time-selector {
@@ -43,6 +39,8 @@
     background-color: #e9ecef;
   }
 
-  /* .portfolio-chart-wrapper{
-    height: 40%
-  } */
+  .portfolio-chart-wrapper{
+    margin-top: -40px;
+  }
+
+  

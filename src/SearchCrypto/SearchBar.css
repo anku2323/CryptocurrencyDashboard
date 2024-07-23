@@ -96,3 +96,12 @@
     padding: 8px 12px;
   }
 }
+
+@media(max-width: 450px){
+  .search-crypto input{
+    width: 100px;
+    margin: 0;
+  }
+
+}
+

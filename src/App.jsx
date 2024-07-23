@@ -14,7 +14,6 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/coin/:coinSymbol" element={<CoinDetails />} />
-        {/* Add other routes here as needed */}
       </Routes>
     </>
   );

@@ -38,7 +38,7 @@ const ExchangeRates = () => {
     <div className="exchange-rates-container">
       <h2>Current Exchange Rates</h2>
       <div className="exchange-rates-form">
-        <div className="form-group">
+        <div className="Amout">
           <label htmlFor="from-currency">From</label>
           <select id="from-currency" value={fromCurrency} onChange={handleFromCurrencyChange}>
             <option value="ETH">ETH</option>
@@ -46,7 +46,7 @@ const ExchangeRates = () => {
            
           </select>
         </div>
-        <div className="form-group">
+        <div className="Amout">
           <label htmlFor="to-currency">To</label>
           <select id="to-currency" value={toCurrency} onChange={handleToCurrencyChange}>
             <option value="USDT">USDT</option>
@@ -54,7 +54,7 @@ const ExchangeRates = () => {
            
           </select>
         </div>
-        <div className="form-group">
+        <div className="Amout">
           <label htmlFor="amount">Amount</label>
           <input type="number" id="amount" value={amount} onChange={handleAmountChange} />
         </div>
