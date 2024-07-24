@@ -15,6 +15,8 @@ const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [coinId, setCoinId] = useState('bitcoin');
   const [coinData, setCoinData] = useState({ market_data: {}, image: {} });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const sidebarRef = useRef(null);
   const navigate = useNavigate();
@@ -40,13 +42,19 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchCoinData = async (coinId) => {
+      setLoading(true);
+      setError('');
       try {
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`);
+        if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         localStorage.setItem(coinId, JSON.stringify(data));
         setCoinData(data);
       } catch (error) {
+        setError('Error fetching coin data. Please try again.');
         console.error('Error fetching coin data:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -75,7 +83,7 @@ const Navbar = () => {
   }, [coinIds]);
 
   const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
+    setShowSidebar(prev => !prev);
   };
 
   const toggleTheme = () => {
@@ -129,30 +137,32 @@ const Navbar = () => {
                   <i className="fas fa-sign-out-alt"></i>Logout
                 </li>
               </ul>
-              <div className="theme-switch">
-                <div className="theme-btn" onClick={toggleTheme}>
-                  <span className="material-icons" style={{ color: isDarkMode ? 'white' : 'black' }}>
-                    {isDarkMode ? 'dark_mode' : 'light_mode'}
-                  </span>
-                </div>
-              </div>
+              
             </div>
           </div>
         )}
       </nav>
       <div className={`grid-container ${isCoinPage ? 'hidden' : ''}`}>
         <div className="grid-item crypto-price-box">
-          <img src={coinData.image?.small || '/default-logo.png'} alt={coinData.name || 'Crypto'} className="crypto-logo" />
-          <div className="crypto-price-info">
-            <span className="crypto-name">{coinData.name || 'Coin Name'}</span>
-            <span className="crypto-price">${coinData.market_data?.current_price?.usd?.toFixed(2) || '0.00'}</span>
-            <span className={`crypto-change ${coinData.market_data?.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}`}>
-              {coinData.market_data?.price_change_percentage_24h >= 0 ? '+' : ''}{coinData.market_data?.price_change_percentage_24h?.toFixed(2) || '0.00'}%
-            </span>
-          </div>
-          <div className='exchange-container'>
-           <Exchange /> 
-          </div>
+          {loading ? (
+            <div>Loading...</div>
+          ) : error ? (
+            <div className="error-message">{error}</div>
+          ) : (
+            <>
+              <img src={coinData.image?.small || '/default-logo.png'} alt={coinData.name || 'Crypto'} className="crypto-logo" />
+              <div className="crypto-price-info">
+                <span className="crypto-name">{coinData.name || 'Coin Name'}</span>
+                <span className="crypto-price">${coinData.market_data?.current_price?.usd?.toFixed(2) || '0.00'}</span>
+                <span className={`crypto-change ${coinData.market_data?.price_change_percentage_24h >= 0 ? 'positive' : 'negative'}`}>
+                  {coinData.market_data?.price_change_percentage_24h >= 0 ? '+' : ''}{coinData.market_data?.price_change_percentage_24h?.toFixed(2) || '0.00'}%
+                </span>
+              </div>
+              <div className='exchange-container'>
+               <Exchange /> 
+              </div>
+            </>
+          )}
         </div>
         <div className="grid-item">
           <CurrencyConverter />

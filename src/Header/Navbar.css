@@ -361,64 +361,6 @@ body {
 .hidden {
   display: none;
 }
-.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-.dark-mode .navbar {
-  background-color: #333;
-  color: #ffffff;
-  border-bottom: 1px solid #444;
-}
-
-.dark-mode body {
-  background-color: #121212;
-}
-
-.dark-mode .navbar-menu li a {
-  color: #ffffff;
-}
-
-.dark-mode .search-bar,
-.dark-mode .profile-container,
-.dark-mode .profile-details,
-.dark-mode .sidebar,
-.dark-mode .sidebar-menu li {
-  background-color: #444;
-  color: #ffffff;
-}
-
-.dark-mode .sidebar-menu li:hover {
-  color: #1e90ff;
-}
-
-.dark-mode .crypto-price-box {
-  background-color: #333;
-  color: #ffffff;
-}
-
-.dark-mode .grid-item,
-.dark-mode .grid-item3 {
-  background-color: #333;
-  border: 1px solid #444;
-}
-
-.dark-mode .search-item {
-  background-color: #333;
-  border: 1px solid #444;
-}
-
-.dark-mode .kromisma {
-  background-color: #333;
-  color: #ffffff;
-}
-
-
-.dark-mode .sidebar-menu li:hover {
-  color: #1e90ff;
-}
-
 
 .kromisma {
   display: flex;
