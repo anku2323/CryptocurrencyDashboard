@@ -25,7 +25,7 @@ const News = () => {
         localStorage.setItem('articles', JSON.stringify(response.data.articles));
         setLoading(false); // Set loading to false after articles are fetched
       } catch (error) {
-        console.error('Error fetching the news articles:', error);
+        console.error('Error fetching the news articles:', error.response || error.message || error);
         setError('Error fetching the news articles. Please try again later.');
         setLoading(false); // Set loading to false even if there's an error
       }
