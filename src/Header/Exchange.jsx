@@ -43,7 +43,7 @@ const ExchangeRates = () => {
           <select id="from-currency" value={fromCurrency} onChange={handleFromCurrencyChange}>
             <option value="ETH">ETH</option>
             <option value="BTC">BTC</option>
-           
+
           </select>
         </div>
         <div className="Amout">
@@ -51,7 +51,7 @@ const ExchangeRates = () => {
           <select id="to-currency" value={toCurrency} onChange={handleToCurrencyChange}>
             <option value="USDT">USDT</option>
             <option value="USD">USD</option>
-           
+
           </select>
         </div>
         <div className="Amout">

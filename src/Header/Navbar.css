@@ -328,6 +328,9 @@ body {
   .search-and-profile{
     gap: 0;
   }
+  .grid-item3{
+    width: 100%;
+  }
 
 }
 
