@@ -7,6 +7,8 @@ import './News.css';
 
 const News = () => {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,16 +16,25 @@ const News = () => {
         const response = await axios.get(
           'https://newsapi.org/v2/everything?q=bitcoin&apiKey=029ffefdbafb4e9f8bd4775943fa7076'
         );
+
+        if (response.status === 426) {
+          throw new Error('API requires upgrade');
+        }
+
         setArticles(response.data.articles);
         localStorage.setItem('articles', JSON.stringify(response.data.articles));
+        setLoading(false); // Set loading to false after articles are fetched
       } catch (error) {
         console.error('Error fetching the news articles:', error);
+        setError('Error fetching the news articles. Please try again later.');
+        setLoading(false); // Set loading to false even if there's an error
       }
     };
 
     const savedArticles = localStorage.getItem('articles');
     if (savedArticles) {
       setArticles(JSON.parse(savedArticles));
+      setLoading(false); // Set loading to false if articles are already in local storage
     } else {
       fetchData();
     }
@@ -31,7 +42,7 @@ const News = () => {
 
   const settings = {
     infinite: true,
-    speed: 500, 
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -44,7 +55,11 @@ const News = () => {
         <h1>News</h1>
       </header>
       <main>
-        {articles.length > 0 ? (
+        {loading ? (
+          <p>Loading news articles...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : articles.length > 0 ? (
           <Slider {...settings}>
             {articles.slice(0, 10).map((article, index) => (
               <div key={index} className="article">
@@ -58,7 +73,7 @@ const News = () => {
             ))}
           </Slider>
         ) : (
-          <p>Loading news articles...</p>
+          <p>No news articles found.</p>
         )}
       </main>
     </div>
